@@ -1,7 +1,7 @@
 {
   "name": "tour_management_server",
   "version": "1.0.0",
-  "description": "this is a university management server side application",
+  "description": "this is a tour management server side application",
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shejanNizam/university-management-server.git"
+    "url": "git+https://github.com/shejanNizam/tour_management_server.git"
   },
   "keywords": [
     "backend",
@@ -28,8 +28,6 @@
   },
   "homepage": "https://github.com/shejanNizam/tour_management_server#readme",
   "dependencies": {
-    "@types/bcrypt": "^6.0.0",
-    "@types/node": "^25.0.3",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "express": "^5.2.1",
@@ -38,8 +36,10 @@
     "zod": "^4.3.5"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/cors": "^2.8.19",
+    "@types/bcrypt": "^6.0.0",
+    "@types/node": "^25.0.3",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
