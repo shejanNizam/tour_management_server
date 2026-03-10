@@ -1,10 +1,10 @@
+/* eslint-disable no-console */
 import { Server } from "http";
 import mongoose from "mongoose";
 import app from "./app";
 import { configs } from "./app/config";
 
 let server: Server;
-// let myAge;
 
 async function main() {
   try {
@@ -48,7 +48,7 @@ process.on("unhandledRejection", (err) => {
   }
   process.exit(1);
 });
-// Unhandler rejection error
+// Unhandler rejection error for testing
 // Promise.reject(new Error("I forgot to catch this promise"));
 
 process.on("uncaughtException", (err) => {
@@ -60,7 +60,7 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
-// Uncaught Exception Error
+// Uncaught Exception Error for testing
 // throw new Error("I forgot to handle this local erro");
 
 /**
