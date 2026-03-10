@@ -4,6 +4,7 @@ import app from "./app";
 import { configs } from "./app/config";
 
 let server: Server;
+// let myAge;
 
 async function main() {
   try {

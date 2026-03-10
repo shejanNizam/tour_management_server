@@ -1,12 +1,12 @@
 import { Response } from "express";
 
-type TResponse<T> = {
+interface TResponse<T> {
   statusCode: number;
   success: boolean;
   message?: string;
   data: T;
   total?: number;
-};
+}
 
 export default function sendResponse<T>(res: Response, data: TResponse<T>) {
   res.status(data?.statusCode).json({
