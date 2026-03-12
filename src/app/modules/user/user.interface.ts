@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 
 export enum IsActive {
-  ACTICE = "ACTICE",
+  ACTICE = "ACTIVE",
   INACTIVE = "INACTIVE",
   BLOCKED = "BLOCKED",
 }
@@ -18,6 +18,7 @@ export interface IAuthProvider {
 }
 
 export interface IUser {
+  _id: string;
   name: string;
   email: string;
   password?: string;
