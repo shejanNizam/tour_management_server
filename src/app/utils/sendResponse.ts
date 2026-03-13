@@ -5,14 +5,15 @@ interface TResponse<T> {
   success: boolean;
   message?: string;
   data: T;
-  total?: number;
+  meta?: number;
 }
 
 export default function sendResponse<T>(res: Response, data: TResponse<T>) {
   res.status(data?.statusCode).json({
+    statusCode: data.statusCode,
     success: data.success,
     message: data.message,
-    totalData: data.total,
     data: data.data,
+    meta: data.meta,
   });
 }

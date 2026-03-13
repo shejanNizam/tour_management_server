@@ -15,7 +15,7 @@ const authProviderSchema = new Schema<IAuthProvider>(
 export const userSchema = new Schema<IUser>(
   {
     name: { type: String, required: true },
-    email: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String },
     phone: { type: String },
     picture: { type: String },
