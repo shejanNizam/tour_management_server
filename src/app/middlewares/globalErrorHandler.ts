@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 
 export default function globalErrorHandler(
   err: any,
   req: Request,
   res: Response,
-  // next: NextFunction
+  next: NextFunction,
 ) {
   return res.status(500).json({
     success: false,

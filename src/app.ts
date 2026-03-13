@@ -2,8 +2,7 @@ import cors from "cors";
 import express, { Application, Request, Response } from "express";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 import notFound from "./app/middlewares/notFound";
-import { UserRouter } from "./app/modules/user/user.route";
-// import router from "./app/routes";
+import router from "./app/routes";
 
 const app: Application = express();
 
@@ -12,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 // application routes
-app.use("/api/v1/user", UserRouter);
+app.use("/api/v1", router);
 
 const test = (req: Request, res: Response) => {
   res.send(`Hello from Tour Management Server`);
