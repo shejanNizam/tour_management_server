@@ -13,7 +13,7 @@ export enum Role {
 }
 
 export interface IAuthProvider {
-  provider: string; // Google, Credential(email + password)
+  provider: "google" | "credentials"; // Google, Credential(email + password)
   providerId: string;
 }
 
@@ -29,7 +29,7 @@ export interface IUser {
   isActive?: IsActive;
   isVerified: boolean;
   role: Role;
-  auths: IAuthProvider;
+  auths: IAuthProvider[];
   bookings?: Types.ObjectId[];
   guides?: Types.ObjectId[];
 }

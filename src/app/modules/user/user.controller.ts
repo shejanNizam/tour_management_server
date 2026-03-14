@@ -7,6 +7,7 @@ import { UserServices } from "./user.service";
 
 const createUser = catchAsync(async (req: Request, res: Response) => {
   const user = await UserServices.createUser(req.body);
+  // console.log(user);
 
   sendResponse(res, {
     statusCode: httpStatus.CREATED,
@@ -19,7 +20,7 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
 const getAllUsers = async (req: Request, res: Response) => {
   const result = await UserServices.getAllUsers();
 
-  res.status(httpStatus.OK).json({
+  sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "All users Retrieved successfully!",
