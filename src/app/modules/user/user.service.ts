@@ -1,10 +1,11 @@
+import bcrypt from "bcrypt";
 import httpStatus from "http-status";
 import AppError from "../../errorHelpers/AppError";
 import { IAuthProvider, IUser } from "./user.interface";
 import { User } from "./user.model";
 
 const createUser = async (payload: Partial<IUser>) => {
-  const { email, ...rest } = payload;
+  const { email, password, ...rest } = payload;
 
   if (!email) {
     throw new AppError(httpStatus.BAD_REQUEST, "Email is required!");
@@ -16,13 +17,19 @@ const createUser = async (payload: Partial<IUser>) => {
     throw new AppError(httpStatus.BAD_REQUEST, "User already exists!");
   }
 
+  const hashPassword = await bcrypt.hash(
+    password as string,
+    Number(process.env.BCRYPT_SALT_ROUNDS),
+  );
+
   const authProvider: IAuthProvider = {
     provider: "credentials",
-    providerId: email,
+    providerId: email as string,
   };
 
   const user = await User.create({
     email,
+    password: hashPassword,
     auths: [authProvider],
     ...rest,
   });
