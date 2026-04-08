@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import bcrypt from "bcrypt";
 import httpStatus from "http-status";
+import jwt from "jsonwebtoken";
 import AppError from "../../errorHelpers/AppError";
 import { IUser } from "../user/user.interface";
 import { User } from "../user/user.model";
@@ -27,10 +27,18 @@ const credentialLogin = async (payload: Partial<IUser>) => {
     throw new AppError(httpStatus.BAD_REQUEST, "Incorrect Password");
   }
 
-  const { password: _, ...rest } = isUserExist;
+  const jwtPayload = {
+    _id: isUserExist._id,
+    email: isUserExist.email,
+    role: isUserExist.role,
+  };
+
+  const accessToken = jwt.sign(jwtPayload, "secret", {
+    expiresIn: "1d",
+  });
 
   return {
-    email: isUserExist.email,
+    email: accessToken,
   };
 };
 
