@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import app from "./app";
 import { configs } from "./app/config";
 import { seedSuperAdmin } from "./app/utils/seedSuperAdmin";
+import { seedAdmin } from "./app/utils/seedAdmin";
 
 let server: Server;
 
@@ -24,6 +25,7 @@ async function main() {
 (async () => {
   await main();
   await seedSuperAdmin();
+  await seedAdmin();
 })();
 
 process.on("SIGTERM", () => {
