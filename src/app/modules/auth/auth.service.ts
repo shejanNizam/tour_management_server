@@ -1,7 +1,8 @@
 import bcrypt from "bcrypt";
 import httpStatus from "http-status";
-import jwt from "jsonwebtoken";
+import { configs } from "../../config";
 import AppError from "../../errorHelpers/AppError";
+import { genarateToken } from "../../utils/jwt";
 import { IUser } from "../user/user.interface";
 import { User } from "../user/user.model";
 
@@ -33,12 +34,15 @@ const credentialLogin = async (payload: Partial<IUser>) => {
     role: isUserExist.role,
   };
 
-  const accessToken = jwt.sign(jwtPayload, "secret", {
-    expiresIn: "1d",
-  });
+  // genarate access token
+  const accessToken = genarateToken(
+    jwtPayload,
+    configs.jwt_access_secret as string,
+    configs.jwt_access_expires as string,
+  );
 
   return {
-    email: accessToken,
+    accessToken,
   };
 };
 
