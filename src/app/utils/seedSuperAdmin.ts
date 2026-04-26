@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import bcrypt from "bcrypt";
 import { configs } from "../config";
 import { IAuthProvider, IUser, Role } from "../modules/user/user.interface";
