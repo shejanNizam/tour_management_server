@@ -13,7 +13,7 @@ const credentialLogin = async (payload: Partial<IUser>) => {
     throw new AppError(httpStatus.BAD_REQUEST, "Email is required");
   }
 
-  const isUserExist = await User.findOne({ email });
+  const isUserExist = await User.findOne({ email }).select("+password");
 
   if (!isUserExist) {
     throw new AppError(httpStatus.NOT_FOUND, "User with this email not found");

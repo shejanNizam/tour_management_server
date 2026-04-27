@@ -8,10 +8,6 @@ import { UserServices } from "./user.service";
 const createUser = catchAsync(async (req: Request, res: Response) => {
   const user = await UserServices.createUser(req.body);
 
-  if (user?.password) {
-    user.password = "";
-  }
-
   sendResponse(res, {
     statusCode: httpStatus.CREATED,
     success: true,

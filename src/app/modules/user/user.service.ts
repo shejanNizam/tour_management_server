@@ -36,7 +36,10 @@ const createUser = async (payload: Partial<IUser>) => {
     ...rest,
   });
 
-  return user;
+  const result = user.toObject();
+  delete result.password;
+
+  return result;
 };
 
 const updateUser = async (
@@ -75,15 +78,18 @@ const updateUser = async (
     }
   }
 
-  if (payload.password) {
+  if (payload.password && payload.password.trim() !== "") {
     payload.password = await bcrypt.hash(
       payload.password,
       Number(configs.bcrypt_salt_round),
     );
+  } else {
+    delete payload.password;
   }
 
   const newUpdatedUser = await User.findByIdAndUpdate(userId, payload, {
-    new: true,
+    // new: true,  //replace below line
+    returnDocument: "after",
     runValidators: true,
   });
 
